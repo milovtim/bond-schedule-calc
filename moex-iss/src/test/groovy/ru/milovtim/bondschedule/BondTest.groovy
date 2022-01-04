@@ -13,16 +13,20 @@ class BondTest extends Specification {
 
     def "create bond"() {
         setup:
+        def isin = 'RU000A1037L9'
         def bondBuilder = new Bond.BondBuilder()
 
         when:
         def bond = bondBuilder
                 .issueDate(LocalDate.of(2020, 5, 15))
-                .secId('RU000A1037L9')
+                .secId(isin)
+                .isin(ISIN.of(isin))
                 .build()
 
         then:
-        bond.getSecId() == 'RU000A1037L9'
-        bond.getIssueDate().dayOfMonth == 15
+        bond.secId == 'RU000A1037L9'
+        bond.isin.value == 'RU000A1037L9'
+        bond.issueDate.dayOfMonth == 15
+        bond.get
     }
 }

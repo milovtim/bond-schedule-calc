@@ -1,9 +1,12 @@
 package ru.milovtim.bondschedule.adapter
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import spock.lang.Shared
 import spock.lang.Specification
 
 class MoexIssInfoTest extends Specification {
+
+    @Shared om = new ObjectMapper()
 
     def "test creation"() {
         given:
@@ -31,7 +34,6 @@ class MoexIssInfoTest extends Specification {
 
     def "test serialization"() {
         given:
-        def om = new ObjectMapper()
         def tested = createSimpleInfo(['one', 'two', 'three'], ['1', '2', '3'] as String[])
         tested.getDescription().data << new MoexIssInfo.FieldData(['second', 'data', 'value'] as String[])
 
