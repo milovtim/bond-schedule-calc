@@ -2,7 +2,7 @@ package ru.milovtim.bondschedule;
 
 interface BondInfoStorage {
 
-    void saveBondInfo(Bond bond);
+    void saveBondInfo(BondImpl bond);
 
-    Bond loadBondInfo(ISIN isin);
+    BondImpl loadBondInfo(ISIN isin);
 }

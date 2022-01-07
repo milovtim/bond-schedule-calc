@@ -1,6 +1,7 @@
 package ru.milovtim.bondschedule.adapter
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import ru.milovtim.bondschedule.moex.MoexIssInfo
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -21,7 +22,7 @@ class MoexIssInfoTest extends Specification {
         tested.getDescription().data[0].fieldDescriptions == field
     }
 
-    private MoexIssInfo createSimpleInfo(columns,field) {
+    private MoexIssInfo createSimpleInfo(columns, field) {
         new MoexIssInfo().with { mi ->
             mi.description = new MoexIssInfo.Description().with { descr ->
                 descr.columns = columns
@@ -41,20 +42,29 @@ class MoexIssInfoTest extends Specification {
         def res = om.writeValueAsString(tested)
 
         then:
-        res
-        println res
+        res.contains('second')
+        res.contains('three')
+        res.contains('1')
     }
 
     def "test read json value"() {
         given:
-        def om = new ObjectMapper()
+        def isin = 'RU000A1037L9'
+        def res = getClass().getResource("/${isin}.json")
 
         when:
-        def result = getClass().getResource('/RU000A1037L9.json').withInputStream {
+        def result = res.withInputStream {
             om.readValue(it, MoexIssInfo)
         }
 
         then:
-        result
+        result.description.columns.size() == 7
+
+        and:
+        def d = result.description.data
+        d.size() == 28
+        d[4].getDataAt(2).get() == isin
+        d[21].getDataAt(0).get() == 'COUPONPERCENT'
+        d[-1].getDataAt(0).get() == 'EMITTER_ID'
     }
 }

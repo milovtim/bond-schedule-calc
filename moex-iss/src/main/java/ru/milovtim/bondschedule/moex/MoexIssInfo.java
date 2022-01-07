@@ -1,4 +1,4 @@
-package ru.milovtim.bondschedule.adapter;
+package ru.milovtim.bondschedule.moex;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;

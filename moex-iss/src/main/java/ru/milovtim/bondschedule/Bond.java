@@ -1,39 +1,59 @@
 package ru.milovtim.bondschedule;
 
-import lombok.Builder;
-import lombok.Getter;
+public interface Bond {
+    String getSecId();
 
-import java.time.LocalDate;
+    String getName();
 
-@Getter
-@Builder()
-public class Bond {
-    private String secId;
-    private String name;
-    private String shortName;
-    private String regNumber;
-    private ISIN isin;
-    private LocalDate issueDate;
-    private LocalDate matDate;
-    private LocalDate buybackDate;
-    private Number initialFaceValue;
-    private String faceUnit;
-    private String latName;
-    private LocalDate startDateMoex;
-    private String programRegistryNumber;
-    private Boolean earlyRepayment;
-    private Number listLevel;
-    private Number daysToRedemption;
-    private Number issueSize;
-    private Number faceValue;
-    private Boolean isQualifiedInvestors;
-    private Number couponFrequency;
-    private LocalDate couponDate;
-    private Number couponPercent;
-    private Number couponValue;
-    private String type;
-    private String typeName;
-    private String group;
-    private String groupName;
-    private Number emitterId;
+    String getShortName();
+
+    String getRegNumber();
+
+    ISIN getIsin();
+
+    java.time.LocalDate getIssueDate();
+
+    java.time.LocalDate getMatDate();
+
+    java.time.LocalDate getBuybackDate();
+
+    Number getInitialFaceValue();
+
+    String getFaceUnit();
+
+    String getLatName();
+
+    java.time.LocalDate getStartDateMoex();
+
+    String getProgramRegistryNumber();
+
+    Boolean getEarlyRepayment();
+
+    Number getListLevel();
+
+    Number getDaysToRedemption();
+
+    Number getIssueSize();
+
+    Number getFaceValue();
+
+    Boolean getIsQualifiedInvestors();
+
+    Number getCouponFrequency();
+
+    java.time.LocalDate getCouponDate();
+
+    Number getCouponPercent();
+
+    Number getCouponValue();
+
+    String getType();
+
+    String getTypeName();
+
+    String getGroup();
+
+    String getGroupName();
+
+    Number getEmitterId();
 }

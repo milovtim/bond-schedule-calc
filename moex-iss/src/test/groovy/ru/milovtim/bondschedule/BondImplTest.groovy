@@ -8,13 +8,13 @@ import spock.lang.Specification
 
 import java.time.LocalDate
 
-class BondTest extends Specification {
+class BondImplTest extends Specification {
 
 
     def "create bond"() {
         setup:
         def isin = 'RU000A1037L9'
-        def bondBuilder = new Bond.BondBuilder()
+        def bondBuilder = new BondImpl.BondBuilder()
 
         when:
         def bond = bondBuilder
@@ -27,6 +27,5 @@ class BondTest extends Specification {
         bond.secId == 'RU000A1037L9'
         bond.isin.value == 'RU000A1037L9'
         bond.issueDate.dayOfMonth == 15
-        bond.get
     }
 }
