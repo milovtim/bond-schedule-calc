@@ -17,4 +17,9 @@ public class ISIN {
     public static ISIN of(String val) {
         return new ISIN(val);
     }
+
+    @Override
+    public String toString() {
+        return getValue();
+    }
 }

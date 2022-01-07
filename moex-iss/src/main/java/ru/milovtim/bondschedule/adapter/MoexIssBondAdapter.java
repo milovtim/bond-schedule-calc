@@ -34,7 +34,7 @@ public class MoexIssBondAdapter implements Bond {
         val fieldData1 = this.index.get(name);
         // [string, date, number, boolean]
         val type = fieldData1.getDataAt(typeIndex()).orElseThrow();
-        val value = fieldData1.getDataAt(typeIndex()).orElseThrow();
+        val value = fieldData1.getDataAt(valueIndex()).orElseThrow();
         Object result;
         switch (type) {
             case "string":
@@ -78,6 +78,10 @@ public class MoexIssBondAdapter implements Bond {
 
     private int typeIndex() {
         return positionOfField(TYPE_INDEX_FIELD);
+    }
+
+    private int valueIndex() {
+        return positionOfField(VALUE_INDEX_FIELD);
     }
 
     private int positionOfField(String fieldName) {

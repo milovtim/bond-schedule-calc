@@ -25,19 +25,23 @@ dependencies {
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy:3.0.9'
-    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 
 //    testImplementation 'org.springframework:spring-context:5.3.13'
 
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
 //    api 'org.javamoney:moneta:1.4.2'
-    api 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
+//    api 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
 
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
 //    implementation 'org.springframework:spring-web:5.3.13'
-    testImplementation 'io.github.openfeign:feign-core:11.7'
+    implementation 'io.github.openfeign:feign-java11:11.8'  //java11 http client
+    implementation 'io.github.openfeign:feign-jackson:11.8' //jackson decoder
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0' //jackson support for java.time.*
+
+    implementation 'com.yandex.cloud:java-sdk-functions:2.4.3'
+
 
 
     //lombok for lazy people
