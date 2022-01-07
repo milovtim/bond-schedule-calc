@@ -22,7 +22,7 @@ public class MoexIssBondAdapter implements Bond {
     private static final String PRECISION_INDEX_FIELD = "precision";
 
 
-    public final MoexIssInfo info;
+    private final MoexIssInfo info;
     private final Map<String, MoexIssInfo.FieldData> index;
 
     public MoexIssBondAdapter(MoexIssInfo info) {
