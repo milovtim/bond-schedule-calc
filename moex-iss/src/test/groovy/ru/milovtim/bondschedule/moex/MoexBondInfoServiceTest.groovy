@@ -1,45 +1,44 @@
 package ru.milovtim.bondschedule.moex
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect
-import com.fasterxml.jackson.annotation.PropertyAccessor
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import feign.Feign
-import feign.http2client.Http2Client
 import feign.jackson.JacksonDecoder
+import feign.mock.HttpMethod
+import feign.mock.MockClient
+import feign.mock.MockTarget
 import ru.milovtim.bondschedule.BondInfoService
 import ru.milovtim.bondschedule.ISIN
 import spock.lang.Specification
 
+import java.time.LocalDate
+
 class MoexBondInfoServiceTest extends Specification {
 
+    MockClient mockClient
     InfoStatService statService
     BondInfoService bondInfoService
-    ObjectMapper om = new ObjectMapper()
-        .registerModule(new JavaTimeModule())
-        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-        .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.PUBLIC_ONLY)
-
-    void setup() {
-        //noinspection HttpUrlsUsage
-        statService = Feign.builder()
-                .client(new Http2Client())
-                .decoder(new JacksonDecoder())
-                .target(InfoStatService, "http://iss.moex.com")
-        bondInfoService = new MoexBondInfoService(statService)
-    }
 
     def "GetBondInfo"() {
         given:
         def isin = ISIN.of('RU000A1037L9')
+        def url = "/iss/securities/${isin}.json?lang=ru&iss.meta=off&iss.only=description"
+        def respData = getClass().getResourceAsStream("/${isin}.json")
+
+        mockClient = new MockClient().ok(HttpMethod.GET, url, respData)
+        statService = Feign.builder()
+                .client(mockClient)
+                .decoder(new JacksonDecoder())
+                .target(new MockTarget<>(InfoStatService))
+        bondInfoService = new MoexBondInfoService(statService)
 
         when:
         def res = bondInfoService.getBondInfo(isin)
 
         then:
-        new File("./RU000A1037L9.json").with {
-            om.writeValue(it, res)
-        }
+        mockClient.verifyOne(HttpMethod.GET, url)
+        res.isin == isin
+        res.couponDate == LocalDate.of(2022, 3, 8)
     }
 }

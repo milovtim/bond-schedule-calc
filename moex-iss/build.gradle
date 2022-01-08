@@ -22,6 +22,7 @@ repositories {
 
 dependencies {
     // Use the awesome Spock testing and specification framework even with Java
+    testImplementation 'io.github.openfeign:feign-mock:11.8'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy:3.0.9'

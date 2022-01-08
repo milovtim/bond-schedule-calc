@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "value")
 public class ISIN {
     @JsonValue
     private final String value;

@@ -31,10 +31,13 @@ public class MoexIssBondAdapter implements Bond {
     }
 
     private <T> T getAndConvertIndexedValue(String name, Class<T> clazz) {
-        val fieldData1 = this.index.get(name);
+        val fieldData = this.index.get(name);
+        if (fieldData == null) {
+            return null;
+        }
         // [string, date, number, boolean]
-        val type = fieldData1.getDataAt(typeIndex()).orElseThrow();
-        val value = fieldData1.getDataAt(valueIndex()).orElseThrow();
+        val type = fieldData.getDataAt(typeIndex()).orElseThrow();
+        val value = fieldData.getDataAt(valueIndex()).orElseThrow();
         Object result;
         switch (type) {
             case "string":
