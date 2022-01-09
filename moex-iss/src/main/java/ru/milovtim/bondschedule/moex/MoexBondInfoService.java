@@ -4,7 +4,6 @@ import ru.milovtim.bondschedule.Bond;
 import ru.milovtim.bondschedule.BondImpl;
 import ru.milovtim.bondschedule.BondInfoService;
 import ru.milovtim.bondschedule.ISIN;
-import ru.milovtim.bondschedule.adapter.MoexIssBondAdapter;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

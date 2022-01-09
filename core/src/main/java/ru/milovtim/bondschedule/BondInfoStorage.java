@@ -1,6 +1,6 @@
 package ru.milovtim.bondschedule;
 
-interface BondInfoStorage {
+public interface BondInfoStorage {
 
     void saveBondInfo(Bond bond);
 

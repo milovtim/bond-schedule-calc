@@ -4,5 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation project(':core')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
 }
 
