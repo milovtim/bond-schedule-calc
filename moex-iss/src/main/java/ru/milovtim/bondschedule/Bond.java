@@ -9,7 +9,7 @@ public interface Bond {
 
     String getRegNumber();
 
-    ISIN getIsin();
+    String getIsin();
 
     java.time.LocalDate getIssueDate();
 

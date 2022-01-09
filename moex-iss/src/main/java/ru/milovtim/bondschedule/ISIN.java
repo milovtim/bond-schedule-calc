@@ -7,16 +7,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of", onConstructor_= {@JsonCreator})
 @EqualsAndHashCode(of = "value")
 public class ISIN {
     @JsonValue
     private final String value;
-
-    @JsonCreator
-    public static ISIN of(String val) {
-        return new ISIN(val);
-    }
 
     @Override
     public String toString() {

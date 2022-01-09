@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.milovtim.bondschedule'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy:3.0.9'
+
+    //lombok for lazy people
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+}
+
+test {
+    useJUnitPlatform()
+}

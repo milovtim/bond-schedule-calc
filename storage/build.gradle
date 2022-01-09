@@ -1,0 +1,8 @@
+plugins {
+    id 'bond-schedule-calc.lib-conventions'
+    id 'java-library'
+}
+
+dependencies {
+}
+

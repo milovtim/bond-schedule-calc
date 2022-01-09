@@ -2,7 +2,6 @@ package ru.milovtim.bondschedule.adapter;
 
 import lombok.val;
 import ru.milovtim.bondschedule.Bond;
-import ru.milovtim.bondschedule.ISIN;
 import ru.milovtim.bondschedule.moex.MoexIssInfo;
 
 import java.text.NumberFormat;
@@ -112,8 +111,8 @@ public class MoexIssBondAdapter implements Bond {
     }
 
     @Override
-    public ISIN getIsin() {
-        return ISIN.of(getAndConvertIndexedValue("ISIN", String.class));
+    public String getIsin() {
+        return getAndConvertIndexedValue("ISIN", String.class);
     }
 
     @Override

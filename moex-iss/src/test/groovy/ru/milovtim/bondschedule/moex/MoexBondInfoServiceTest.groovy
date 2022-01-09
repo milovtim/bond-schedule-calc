@@ -1,8 +1,6 @@
 package ru.milovtim.bondschedule.moex
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+
 import feign.Feign
 import feign.jackson.JacksonDecoder
 import feign.mock.HttpMethod
@@ -38,7 +36,7 @@ class MoexBondInfoServiceTest extends Specification {
 
         then:
         mockClient.verifyOne(HttpMethod.GET, url)
-        res.isin == isin
+        res.isin == isin.value
         res.couponDate == LocalDate.of(2022, 3, 8)
     }
 }
