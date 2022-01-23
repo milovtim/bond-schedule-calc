@@ -1,10 +1,12 @@
 plugins {
     id 'bond-schedule-calc.lib-conventions'
+    id 'groovy'
     id 'java-library'
 }
 
 dependencies {
     implementation project(':core')
     implementation 'com.amazonaws:aws-java-sdk-s3'
+    testImplementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 }
 
